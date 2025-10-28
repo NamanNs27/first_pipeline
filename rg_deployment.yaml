@@ -1,0 +1,19 @@
+trigger: none   # run manually
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  rgName: 'MyFirstRG'
+  rgLocation: 'centralindia'
+
+steps:
+- task: AzureCLI@2
+  displayName: 'Create Azure Resource Group'
+  inputs:
+    azureSubscription: 'af7ede31-398c-42b5-a61a-e4c2827b6ed5'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      echo "Creating Resource Group: $rgName in $rgLocation"
+      az group create --name $rgName --location $rgLocation
